@@ -1,25 +1,30 @@
 :root {
-    --bg:#fff;
-    --cyan:#1e9191;
-    --light-gray:#eee;
-    --gray:#6a6a6a;
-    --code:#666;
-    --dark:#444;
-    --darker:#222;
-    --code-bg:#0000000a
+    --bg: #fff;
+    --cyan: #1e9191;
+    --light-gray: #eee;
+    --gray: #6a6a6a;
+    --code: #666;
+    --dark: #444;
+    --darker: #222;
+    --code-bg: #0000000a
 }
 
 html {
+    font-family: sans-serif;
     background: var(--bg);
     font-size: 16px;
-    line-height:  1.5;
 }
 
 body {
     display: block;
-    max-width: 34rem;
+    max-width: 38rem;
     margin: 0 auto;
     padding: 1rem;
+    line-height:  1.5;
+}
+
+header {
+    margin-bottom: 10px;
 }
 
 pre {
@@ -43,20 +48,19 @@ code {
 }
 
 nav {
+    margin-top: 10px;
     float: center;
 }
 
 img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    margin: 0 auto;
 }
 
 h1 {
     font-size: 24px;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 h2 {
@@ -72,4 +76,13 @@ h3 {
 
 p {
     bottom: 2em
+}
+
+footer {
+    display: block;
+    max-width: 34rem;
+    margin: 0 auto;
+    font-size: .889rem;
+    color: --gray;
+    padding: 1rem;
 }
