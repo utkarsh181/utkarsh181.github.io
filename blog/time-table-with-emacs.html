@@ -55,10 +55,13 @@
 	  <div class="outline-text-2" id="text-2">
 	    <p>
 	      Excel files can be easily converted to CSV file from any application
-	      but I use Libreoffice to convert files to CSV just by pressing
-	      <code>Ctrl-S</code> and we are presented with following options.
+	      but I use Libreoffice to convert files to CSV.
 	    </p>
-
+	    <p>
+	      First open the Excel file in and new Libreoffice session
+	      and then by pressing <code>Ctrl-S</code> we are
+	      presented with following options, choose CSV extension
+	      and save the file.
 	    <p>
 	      <img src="csv.png" title="Libreoffice save dialog">
 	      </p>
@@ -76,22 +79,23 @@
 
 	      <p>
 		So I wrote a simple Python script to parse the CSV file and filter out
-		necessary classes by taking command line arguments.
+		necessary classes by taking command line arguments which you can get
+		from
+		<a href="https://github.com/utkarsh181/dotfiles/blob/master/bin/.local/bin/ttable">here</a>.
 	      </p>
 
 	      <div class="org-src-container">
-		<pre class="src src-sh">~ $ ttable --help
-		  usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
+		<pre>$ ttable -h
+usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
 
-		  optional arguments:
-		  -h, --help            show this help message and exit
-		  -i INPUT, --input INPUT
-		  input file
-		  -o OUTPUT, --output OUTPUT
-		  output file
-		  -c CLASS_NAME, --class_name CLASS_NAME
-		  class name
-		</pre>
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        input file
+  -o OUTPUT, --output OUTPUT
+                        output file
+  -c CLASS_NAME, --class_name CLASS_NAME
+		        class name</pre>
 	      </div>
 
 	      <p>
@@ -100,8 +104,7 @@
 	      </p>
 
 	      <div class="org-src-container">
-		<pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41
-		</pre>
+		<pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41</pre>
 	      </div>
 
 	      <p>
