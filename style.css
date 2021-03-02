@@ -1,5 +1,5 @@
 :root {
-    --bg: #fff;
+    --bg: #fefefe
     --cyan: #1e9191;
     --light-gray: #eee;
     --gray: #6a6a6a;
@@ -15,12 +15,12 @@ html {
     font-size: 16px;
 }
 
-body {
-    display: block;
-    max-width: 38rem;
-    margin: 0 auto;
-    padding: 1rem;
-    line-height:  1.5;
+@charset "utf-8"; body {
+    font-family: monospace,"Courier New",Courier;
+    padding: 1em;
+    margin: auto;
+    max-width: 72em;
+    background: var(--bg);
 }
 
 header {
@@ -55,27 +55,6 @@ nav {
 img {
     display: block;
     margin: 0 auto;
-}
-
-h1 {
-    font-size: 24px;
-    margin: 0;
-    padding: 0;
-}
-
-h2 {
-    color: var(--dark);
-    font-size: 20px;
-    margin: 0;
-    padding: 0
-}
-
-h3 {
-    color: var(--dark)
-}
-
-p {
-    bottom: 2em
 }
 
 footer {
