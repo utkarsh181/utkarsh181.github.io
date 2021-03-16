@@ -27,7 +27,6 @@
 	      </ul>
 	    </div>
 	  </div>
-
 	  <div id="outline-container-org62acfdd" class="outline-2">
 	    <h2 id="org62acfdd">Introduction</h2>
 	    <div class="outline-text-2" id="text-1">
@@ -41,7 +40,6 @@
 	      </p>
 	    </div>
 	  </div>
-
 	  <div id="outline-container-orgbf44657" class="outline-2">
 	    <h2 id="orgbf44657">Convert Excel file to CSV</h2>
 	    <div class="outline-text-2" id="text-2">
@@ -59,7 +57,6 @@
 		</p>
 	      </div>
 	      </div>
-
 	      <div id="outline-container-org5f1e620" class="outline-2">
 		<h2 id="org5f1e620">Clean up CSV files</h2>
 		<div class="outline-text-2" id="text-3">
@@ -68,16 +65,14 @@
 		    given to us without filtering classes from another batches which makes
 		    it really long and difficult to parse.
 		  </p>
-
 		  <p>
 		    So I wrote a simple Python script to parse the CSV file and filter out
 		    necessary classes by taking command line arguments which you can get
 		    from
 		    <a href="https://github.com/utkarsh181/dotfiles/blob/master/bin/.local/bin/ttable">here</a>.
 		  </p>
-
 		  <div class="org-src-container">
-		    <pre>$ ttable -h
+		    <pre><code>$ ttable -h
 usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
 
 optional arguments:
@@ -87,24 +82,20 @@ optional arguments:
 -o OUTPUT, --output OUTPUT
                       output file
 -c CLASS_NAME, --class_name CLASS_NAME
-		      class name</pre>
+			class name</code></pre>
 		  </div>
-
 		  <p>
 		    For example, if my current batch is <code>CS-41</code> and CSV file is
 		    <code>time-table.csv</code> we can invoke the script as:
 		  </p>
-
 		  <div class="org-src-container">
-		    <pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41</pre>
+		    <pre class="src src-sh"><code>~ $ ttable -i time-table.csv -o output.csv -c cs41</code></pre>
 		  </div>
-
 		  <p>
 		    This will produce <code>output.csv</code> as a cleaned-up CSV file.
 		  </p>
 		</div>
 	      </div>
-
 	      <div id="outline-container-org186d841" class="outline-2">
 		<h2 id="org186d841">CSV file to beautiful time-table</h2>
 		<div class="outline-text-2" id="text-4">
