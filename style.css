@@ -3,20 +3,13 @@
     --cyan: #1e9191;
     --light-gray: #eee;
     --gray: #6a6a6a;
-    --code: #666;
     --dark: #444;
     --darker: #222;
+    --code: #666;
     --code-bg: #0000000a
 }
 
-html {
-    font-family: sans-serif;
-    background: var(--bg);
-    font-size: 16px;
-}
-
 @charset "utf-8"; body {
-    font-family: monospace,"Courier New",Courier;
     padding: 1em;
     margin: auto;
     max-width: 72em;
@@ -32,19 +25,19 @@ pre {
     overflow-y: hidden;
     padding: 10px;
     min-width: 0;
-    background-color: var(--code-bg)!important;
-    font-size: 15px!important
+    font-size: .889rem;
+    background-color: var(--code-bg);
 }
 
-pre>code {
-    color: var(--code)
+pre<code {
+    color: var(--code);
 }
 
 code {
     font-variant: normal;
-    font-size: 15px!important;
-    color: var(--dark);
-    border-bottom: unset
+    font-size: .889rem;
+    border-bottom: unset;
+    color: var(--code);
 }
 
 nav {
@@ -62,6 +55,6 @@ footer {
     max-width: 34rem;
     margin: 0 auto;
     font-size: .889rem;
-    color: --gray;
+    color: var(--gray);
     padding: 1rem;
 }
