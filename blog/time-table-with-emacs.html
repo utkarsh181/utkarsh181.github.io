@@ -65,15 +65,15 @@
 		    running.
 		  </p>
 		  <div class="org-src-container">
-		    <pre><code>$ curl https://raw.githubusercontent.com/utkarsh181/dotfiles/master/bin/.local/bin/ttable -o ~/.local/share/ttable
-$ chmod +x ~/.local/share/ttable</code></pre>
+		    <pre>$ curl https://raw.githubusercontent.com/utkarsh181/dotfiles/master/bin/.local/bin/ttable -o ~/.local/share/ttable
+$ chmod +x ~/.local/share/ttable</pre>
 		  </div>
 		  <p>
 		    The program itself is small and quite easy to understand but
 		    here is the help output which briefly explain it's usage.
 		  </p>
 		  <div class="org-src-container">
-		    <pre><code>$ ttable -h
+		    <pre>$ ttable -h
 usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
 
 optional arguments:
@@ -83,14 +83,14 @@ optional arguments:
 -o OUTPUT, --output OUTPUT
                       output file
 -c CLASS_NAME, --class_name CLASS_NAME
-			class name</code></pre>
+			class name</pre>
 		  </div>
 		  <p>
 		    For example, if my current batch is <code>CS-41</code> and CSV file is
 		    <code>time-table.csv</code> we can invoke the script as:
 		  </p>
 		  <div class="org-src-container">
-		    <pre class="src src-sh"><code>~ $ ttable -i time-table.csv -o output.csv -c cs41</code></pre>
+		    <pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41</pre>
 		  </div>
 		  <p>
 		    This will produce <code>output.csv</code> as a cleaned-up CSV file.
@@ -109,6 +109,8 @@ optional arguments:
 		  </p>
 		  <p>
 		    <img src="time-table.png" title="Pretty time table">
+		  </p>
+		  <p>
 		    Emacs now itself can be used like a small but capable table
 		    editor which I will leave upto your exploration.  You can
 		    read more about it from Org Mode official documentation
