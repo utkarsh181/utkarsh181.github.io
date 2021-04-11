@@ -1,44 +1,77 @@
 :root {
-    --col-black: #000000;
-    --col-black-alt: #181a20;
-    --col-red: #ff8059;
-    --col-red-alt: #f4923b;
-    --col-green: #44bc44;
-    --col-green-alt: #00cd68;
-    --col-yellow: #eecc00;
-    --col-yellow-alt: #f0ce43;
-    --col-blue: #00bdfa;
-    --col-blue-alt: #72a4ff;
-    --col-magenta: #feacd0;
-    --col-magenta-alt: #b6a0ff;
-    --col-cyan: #00d3d0;
-    --col-cyan-alt: #6ae4b9;
-    --col-white-alt: #a8a8a8;
-    --col-white: #ffffff;
-    --col-calm: #fbd6f4;
-    --col-cold: #c6eaff;
-    --col-mild: #bfebe0;
-    --col-warm: #f8dec0;
-    --col-bgdim: #110b11;
-    --col-brandbg: #121212;
-    --col-brandfg: #b2a2a2;
-    --col-brandlink: #c8d4df;
-    --col-basebg: var(--col-black);
-    --col-basebgalt: var(--col-black-alt);
-    --col-basefg: var(--col-white);
-    --col-basefgalt: var(--col-white-alt);
-    --col-baselinkfg: var(--col-blue);
-    --col-baselinkfgalt: var(--col-cyan);
-    --col-baselinkfghover: var(--col-blue-alt);
+    --col-black:        #000000;
+    --col-black-alt:    #505050;
+    --col-red:          #a60000;
+    --col-red-alt:      #972500;
+    --col-green:        #005e00;
+    --col-green-alt:    #145c33;
+    --col-yellow:       #813e00;
+    --col-yellow-alt:   #863927;
+    --col-blue:         #0000bb;
+    --col-blue-alt:     #223fbf;
+    --col-magenta:      #721045;
+    --col-magenta-alt:  #5317ac;
+    --col-cyan:         #00538b;
+    --col-cyan-alt:     #005a5f;
+    --col-white-alt:    #f0f0f0;
+    --col-white:        #ffffff;
+    --col-calm:         #61284f;
+    --col-cold:         #093060;
+    --col-mild:         #184034;
+    --col-warm:         #5d3026;
+    --col-bgdim:        #f8f8f8;
+    --col-brandbg:      #ebebeb;
+    --col-brandfg:      #424242;
+    --col-brandlink:    #002f40;
+    --col-basebg:             var(--col-white);
+    --col-basebgalt:          var(--col-white-alt);
+    --col-basefg:             var(--col-black);
+    --col-basefgalt:          var(--col-black-alt);
+    --col-baselinkfg:         var(--col-blue);
+    --col-baselinkfgalt:      var(--col-cyan);
+    --col-baselinkfghover:    var(--col-blue-alt);
     --col-baselinkfgalthover: var(--col-cyan-alt);
-    --col-inlinecodebg: var(--col-basebgalt);
-    --col-inlinecodefg: var(--col-basefg);
-    --col-codeblockbg: var(--col-bgdim);
-    --col-codeblockfg: var(--col-basefg);
-    --col-notifyinfo: var(--col-blue);
-    --col-notifynote: var(--col-green);
-    --col-notifywarn: var(--col-yellow);
-    --col-notifycrit: var(--col-red);
+    --col-inlinecodebg:       var(--col-basebgalt);
+    --col-inlinecodefg:       var(--col-basefg);
+    --col-codeblockbg:        var(--col-bgdim);
+    --col-codeblockfg:        var(--col-basefg);
+    --col-notifyinfo:         var(--col-blue);
+    --col-notifynote:         var(--col-green);
+    --col-notifywarn:         var(--col-yellow);
+    --col-notifycrit:         var(--col-red);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+	--col-black:        #000000;
+	--col-black-alt:    #181a20;
+	--col-red:          #ff8059;
+	--col-red-alt:      #f4923b;
+	--col-green:        #44bc44;
+	--col-green-alt:    #00cd68;
+	--col-yellow:       #eecc00;
+	--col-yellow-alt:   #f0ce43;
+	--col-blue:         #00bdfa;
+	--col-blue-alt:     #72a4ff;
+	--col-magenta:      #feacd0;
+	--col-magenta-alt:  #b6a0ff;
+	--col-cyan:         #00d3d0;
+	--col-cyan-alt:     #6ae4b9;
+	--col-white-alt:    #a8a8a8;
+	--col-white:        #ffffff;
+	--col-calm:         #fbd6f4;
+	--col-cold:         #c6eaff;
+	--col-mild:         #bfebe0;
+	--col-warm:         #f8dec0;
+	--col-bgdim:        #110b11;
+	--col-brandbg:      #121212;
+	--col-brandfg:      #b2a2a2;
+	--col-brandlink:    #c8d4df;
+	--col-basebg:    var(--col-black);
+	--col-basebgalt: var(--col-black-alt);
+	--col-basefg:    var(--col-white);
+	--col-basefgalt: var(--col-white-alt);
+    }
 }
 
 @charset "utf-8"; body {
@@ -59,26 +92,26 @@ nav {
 }
 
 nav ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
 }
 
 nav > div > ul > li > a {
-	display: block;
-	line-height: 2rem;
-	padding: 0.5rem 0.5rem;
-	text-decoration: none;
-	color: var(--col-brandlink);
+    display: block;
+    line-height: 2rem;
+    padding: 0.5rem 0.5rem;
+    text-decoration: none;
+    color: var(--col-brandlink);
 }
 
 .nav-left {
-	float: left;
+    float: left;
 }
 
 .nav-right ul li {
-	float: right;
+    float: right;
 }
 
 code {
