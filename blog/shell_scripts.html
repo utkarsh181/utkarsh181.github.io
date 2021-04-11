@@ -89,28 +89,27 @@
 
 	  <div class="org-src-container">
 	    <pre class="src src-python"># add repodir = directory to clone all repo's
-	      def set_repodir(home):
-	      repodir = home + '/.local/src'
-	      os.mkdir(repodir)
-	      os.chown(repodir, user_info.pw_uid, pw_gid)
+def set_repodir(home):
+    repodir = home + '/.local/src'
+    os.mkdir(repodir)
+    os.chown(repodir, user_info.pw_uid, pw_gid)
 
-	      # add user account
-	      def add_user():
-	      try:
-	      home = '/home/' + user
-	      useradd = ['useradd', '-m', '-g', 'wheel',
-	      '-s', '/bin/bash', user]
-	      # make bash as default shell
-	      subprocess.run(useradd, capture_output=True, check=True)
-	      set_repodir(home)
-	      # if users exist, then modify user account
-	      except subprocess.CalledProcessError:
-	      usermod = ['usermod', '-a', '-G', 'wheel', user]
-	      subprocess.run(usermod, capture_output=True, check=True)
-	      os.mkdir(home)
-	      os.chown(home, user_info.pw_uid, pw_gid)
-	      set_repodir(home)
-	    </pre>
+# add user account
+def add_user():
+    try:
+	home = '/home/' + user
+	useradd = ['useradd', '-m', '-g', 'wheel',
+		   '-s', '/bin/bash', user]
+	# make bash as default shell
+	subprocess.run(useradd, capture_output=True, check=True)
+	set_repodir(home)
+    # if users exist, then modify user account
+    except subprocess.CalledProcessError:
+	usermod = ['usermod', '-a', '-G', 'wheel', user]
+	subprocess.run(usermod, capture_output=True, check=True)
+	os.mkdir(home)
+	os.chown(home, user_info.pw_uid, pw_gid)
+	set_repodir(home)</pre>
 	  </div>
 
 	  <p>
@@ -119,10 +118,9 @@
 
 	  <div class="org-src-container">
 	    <pre class="src src-sh">adduserandpass() { \
-	      useradd -m -g wheel -s /bin/bash "$name" &gt;/dev/null 2&gt;&amp;1 ||
-	      usermod -a -G wheel "$name" &amp;&amp; mkdir -p /home/"$name" &amp;&amp; chown "$name":wheel /home/"$name"
-	      repodir="/home/$name/.local/src"; mkdir -p "$repodir"; chown -R "$name":wheel "$(dirname "$repodir")" ;}
-	    </pre>
+	useradd -m -g wheel -s /bin/bash "$name" >/dev/null 2>&1 ||
+	usermod -a -G wheel "$name" && mkdir -p /home/"$name" && chown "$name":wheel /home/"$name"
+	repodir="/home/$name/.local/src"; mkdir -p "$repodir"; chown -R "$name":wheel "$(dirname "$repodir")" ;}</pre>
 	  </div>
 
 	  <p>
@@ -140,14 +138,13 @@
 
 	  <div class="org-src-container">
 	    <pre class="src src-python"># add user's password
-	      def add_pass(password):
-	      chpass= 'echo ' + user + ':' + password + ' | chpasswd'
-	      output = subprocess.getstatusoutput(chpass)
-	      # exit if output status output is not zero
-	      if output[0] != 0:
-	      err_msg(output.chpass)
-	      exit(1)
-	    </pre>
+def add_pass(password):
+    chpass= 'echo ' + user + ':' + password + ' | chpasswd'
+    output = subprocess.getstatusoutput(chpass)
+    # exit if output status output is not zero
+    if output[0] != 0:
+      err_msg(output.chpass)
+      exit(1)</pre>
 	  </div>
 	</div>
       </div>
@@ -177,45 +174,44 @@
 
 	  <div class="org-src-container">
 	    <pre class="src src-elisp">(defun ut-common-shell-command (command &amp;rest args)
-	      "Run COMMAND with ARGS.
-	      Return the exit code and output in a list."
-	      (with-temp-buffer
-	      (list (apply 'call-process command nil (current-buffer) nil args)
-	      (buffer-string))))
+  "Run COMMAND with ARGS.
+Return the exit code and output in a list."
+  (with-temp-buffer
+    (list (apply 'call-process command nil (current-buffer) nil args)
+	  (buffer-string))))
 
-	      (defun emount-mount-usb (usb-name mount-point)
-	      "Mount usb with USB-NAME at MOUNT-POINT."
-	      (interactive (list (emount--select-unmounted-usb (emount--get-drive-list emount--usb-drive))
-	      (emount--select-mount-point)))
-	      (let* ((partition-cmd
-	      (concat "lsblk -no fstype " usb-name))
-	      (partition-type
-	      (string-chop-newline (shell-command-to-string partition-cmd)))
-	      user-group result exit-code output)
-	      (if (string-equal partition-type "vfat")
-	      (progn
-	      (setq result (ut-common-shell-command "sudo" "mount" "-t" "vfat"
-	      "-o" "rw,umask=0000" usb-name mount-point))
-	      (setq exit-code (nth 0 result))
-	      (setq output (nth 1 result))
-	      (if (= exit-code emount--success-code)
+(defun emount-mount-usb (usb-name mount-point)
+  "Mount usb with USB-NAME at MOUNT-POINT."
+  (interactive (list (emount--select-unmounted-usb (emount--get-drive-list emount--usb-drive))
+		     (emount--select-mount-point)))
+  (let* ((partition-cmd
+	  (concat "lsblk -no fstype " usb-name))
+	 (partition-type
+	  (string-chop-newline (shell-command-to-string partition-cmd)))
+	 user-group result exit-code output)
+    (if (string-equal partition-type "vfat")
+	(progn
+	  (setq result (ut-common-shell-command "sudo" "mount" "-t" "vfat"
+						"-o" "rw,umask=0000" usb-name mount-point))
+	  (setq exit-code (nth 0 result))
+	  (setq output (nth 1 result))
+	  (if (= exit-code emount--success-code)
 	      (message "%s mounted successfully!" usb-name)
-	      (user-error output)))
-	      (setq result (ut-common-shell-command "sudo" "mount" usb-name mount-point))
-	      (setq exit-code (nth 0 result))
-	      (setq output (nth 1 result))
-	      (if (not (eq exit-code emount--success-code))
-	      (user-error output)
-	      ;; TODO: test groups output
-	      (setq user-group (nth 0 (split-string (shell-command-to-string "groups"))))
-	      (setq result (ut-common-shell-command "sudo" "chowm" (user-login-name)
-	      ":" user-group mount-point))
-	      (setq exit-code (nth 0 result))
-	      (setq output (nth 1 result))
-	      (if (= exit-code emount--success-code)
-	      (message "%s mounted successfully!" usb-name)
-	      (user-error output))))))
-	    </pre>
+	    (user-error output)))
+      (setq result (ut-common-shell-command "sudo" "mount" usb-name mount-point))
+      (setq exit-code (nth 0 result))
+      (setq output (nth 1 result))
+      (if (not (eq exit-code emount--success-code))
+	  (user-error output)
+	;; TODO: test groups output
+	(setq user-group (nth 0 (split-string (shell-command-to-string "groups"))))
+	(setq result (ut-common-shell-command "sudo" "chowm" (user-login-name)
+					      ":" user-group mount-point))
+	(setq exit-code (nth 0 result))
+	(setq output (nth 1 result))
+	(if (= exit-code emount--success-code)
+	    (message "%s mounted successfully!" usb-name)
+	  (user-error output))))))</pre>
 	  </div>
 
 	  <p>
@@ -230,19 +226,18 @@
 
 	  <div class="org-src-container">
 	    <pre class="src src-sh">mountusb() { \
-	      chosen="$(echo "$usbdrives" | dmenu -i -p "Mount which drive?")" || exit 1
-	      chosen="$(echo "$chosen" | awk '{print $1}')"
-	      sudo -A mount "$chosen" 2&gt;/dev/null &amp;&amp; notify-send "USB mounting" "$chosen mounted." &amp;&amp; exit 0
-	      alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$3!~/\/boot|\/home$|SWAP/&amp;&amp;length($3)&gt;1{printf "-not ( -path *%s -prune ) ",$3}')
-	      getmount "/mnt /media /mount /home -maxdepth 5 -type d $alreadymounted"
-	      partitiontype="$(lsblk -no "fstype" "$chosen")"
-	      case "$partitiontype" in
-	      "vfat") sudo -A mount -t vfat "$chosen" "$mp" -o rw,umask=0000;;
-	      "exfat") sudo -A mount "$chosen" "$mp" -o uid="$(id -u)",gid="$(id -g)";;
-	      *) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
-	      esac
-	      }
-	    </pre>
+	chosen="$(echo "$usbdrives" | dmenu -i -p "Mount which drive?")" || exit 1
+	chosen="$(echo "$chosen" | awk '{print $1}')"
+	sudo -A mount "$chosen" 2>/dev/null && notify-send "USB mounting" "$chosen mounted." && exit 0
+	alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not ( -path *%s -prune ) ",$3}')
+	getmount "/mnt /media /mount /home -maxdepth 5 -type d $alreadymounted"
+	partitiontype="$(lsblk -no "fstype" "$chosen")"
+	case "$partitiontype" in
+		"vfat") sudo -A mount -t vfat "$chosen" "$mp" -o rw,umask=0000;;
+		"exfat") sudo -A mount "$chosen" "$mp" -o uid="$(id -u)",gid="$(id -g)";;
+		*) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
+	esac
+	}</pre>
 	  </div>
 	</div>
       </div>
