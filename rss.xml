@@ -16,8 +16,9 @@
     <!-- LB -->
 
     <item>
-      <title>Time table with Emacs</title>
-      <guid></guid>
+      <title>Shell scripts are irreplaceable!</title>
+      <guid>https://www.utkarshsingh.xyz/blog/shell_scripts.html</guid>
+      <pubDate>Mon, 12 Apr 2021 11:08:44 +0530</pubDate>
       <description><![CDATA[
       <div id="content">
       <h1 class="title">Shell scripts are irreplaceable!</h1>
@@ -254,7 +255,8 @@
 
       <item>
       <title>Time table with Emacs</title>
-      <guid></guid>
+      <guid>https://www.utkarshsingh.xyz/blog/time-table-with-emacs.html</guid>
+      <pubDate>Mon, 12 Apr 2021 11:08:44 +0530</pubDate>
       <description><![CDATA[
       <div id="content">
       <h1 class="title">Time table with GNU Emacs</h1>
