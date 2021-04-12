@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+  <channel>
+    <title>Utkarsh Singh</title>
+    <description>Utkarsh Singh</description>
+    <language>en-us</language>
+    <link>https://www.utkarshsingh.xyz/rss.html</link>
+    <atom:link href="https://www.utkarshsingh.xyz/rss.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <title>Utkarsh Singh</title>
+      <url>https://www.utkarshsingh.xyz/about/utkarsh.jpg</url>
+      <link>https://www.utkarshsingh.xyz/rss.xml</link>
+    </image>
+
+    <!-- LB -->
+
+    <item>
+      <title>Time table with Emacs</title>
+      <guid></guid>
+      <description><![CDATA[
+      <div id="content">
+      <h1 class="title">Shell scripts are irreplaceable!</h1>
+
+      <div id="outline-container-orgd2ca8fd" class="outline-2">
+      <h2 id="orgd2ca8fd">Introduction</h2>
+      <div class="outline-text-2" id="text-orgd2ca8fd">
+      <p>
+      <i>One line of shell script is worth 10,000 lines of C code.</i>
+      </p>
+
+      <p>
+      Shell scripts are one the most important but at the same time most
+      under appreciated aspect of Unix programming.  After writing
+      substantial about of code to imitate and replace shell scripts with
+      other programming languages I have indeed realised that they are
+      irreplaceable.  Most programming language tries to imitate programs
+      like <code>cd</code>, <code>mkdir</code>, <code>ls</code>,  etc but fails to identify it's greatest
+      strength, pipelines.  The flow of data using pipelines feels much more
+      natural and efficient.
+      </p>
+
+      <p>
+      Now, I will try to present the difficulties I faced in replacing shell
+      scripts with a 'proper' programming language.
+      </p>
+
+      <p>
+      <b>Note</b>: Here we are referring to POSIX Shell scripts as they are
+      easier to wrap your head around.
+      </p>
+      </div>
+      </div>
+
+      <div id="outline-container-orgdcba5f5" class="outline-2">
+      <h2 id="orgdcba5f5">Python</h2>
+      <div class="outline-text-2" id="text-orgdcba5f5">
+      <p>
+      Even though Python is easy to use, fast to get things done and have
+      batteries included philosophy it still fails to be a good replacements
+      for shell scripts.
+      </p>
+
+      <p>
+      I decided to write a <a href="https://github.com/utkarsh181/AEBS">python program</a> to install <a href="https://archlinux.org">Arch Linux</a> and
+      configure it to my liking (basically bootstrap it). At first I was
+      really happy with python modules like <code>os</code>, <code>pwd</code> and <code>getpass</code> but as
+      time went on these abstraction proved more costly than useful.
+      </p>
+
+      <p>
+      Now here is a snippet that I used to create a Unix user account and it's
+      equivalent version in shell script.
+      </p>
+
+      <p>
+      <b>Note:</b> Any of mistakes done in implementing these programs are
+      unintentional and if you find any them please <a href="https://www.utkarshsingh.xyz/contact">contact</a> me.
+      </p>
+
+      <p>
+      Python version:
+      </p>
+
+      <div class="org-src-container">
+      <pre class="src src-python"># add repodir = directory to clone all repo's
+      def set_repodir(home):
+      repodir = home + '/.local/src'
+      os.mkdir(repodir)
+      os.chown(repodir, user_info.pw_uid, pw_gid)
+
+      # add user account
+      def add_user():
+      try:
+      home = '/home/' + user
+      useradd = ['useradd', '-m', '-g', 'wheel',
+      '-s', '/bin/bash', user]
+      # make bash as default shell
+      subprocess.run(useradd, capture_output=True, check=True)
+      set_repodir(home)
+      # if users exist, then modify user account
+      except subprocess.CalledProcessError:
+      usermod = ['usermod', '-a', '-G', 'wheel', user]
+      subprocess.run(usermod, capture_output=True, check=True)
+      os.mkdir(home)
+      os.chown(home, user_info.pw_uid, pw_gid)
+      set_repodir(home)</pre>
+      </div>
+
+      <p>
+      Shell script version (taken from <a href="https://larbs.xyz/larbs.sh">LARBS</a>):
+      </p>
+
+      <div class="org-src-container">
+      <pre class="src src-sh">adduserandpass() { \
+      useradd -m -g wheel -s /bin/bash "$name" >/dev/null 2>&1 ||
+      usermod -a -G wheel "$name" && mkdir -p /home/"$name" && chown "$name":wheel /home/"$name"
+      repodir="/home/$name/.local/src"; mkdir -p "$repodir"; chown -R "$name":wheel "$(dirname "$repodir")" ;}</pre>
+      </div>
+
+      <p>
+      As we can see the python version is not only more lengthy but also
+      more error prone compared to shell script version.  What will happen
+      when <code>usermod</code> command will fail?
+      </p>
+
+      <p>
+      Now there comes some command which cannot be scripted without
+      pipelines and these require us to use a different subroutine called
+      <code>getstatusoutput</code> to invoke shell, execute command and get status and
+      output back.
+      </p>
+
+      <div class="org-src-container">
+      <pre class="src src-python"># add user's password
+      def add_pass(password):
+      chpass= 'echo ' + user + ':' + password + ' | chpasswd'
+      output = subprocess.getstatusoutput(chpass)
+      # exit if output status output is not zero
+      if output[0] != 0:
+      err_msg(output.chpass)
+      exit(1)</pre>
+      </div>
+      </div>
+      </div>
+
+      <div id="outline-container-orgf0f2fba" class="outline-2">
+      <h2 id="orgf0f2fba">Elisp (Emacs Lisp)</h2>
+      <div class="outline-text-2" id="text-orgf0f2fba">
+      <p>
+      At first it seems confusing to use a editor's extension language to
+      program your environment but due to extensible nature of LISP it can
+      be even used to do so.  Also I generally use Emacs as my interface to
+      UNIX rather than a text editor.
+      </p>
+
+      <p>
+      I recently wrote a Elisp library called <a href="https://github.com/utkarsh181/dotfiles/blob/master/emacs/.config/emacs/lisp/emount.el">emount</a> to make use of Emacs
+      completion to mount and umount USB drives and Android using Emacs! At
+      its core it was just using <code>mount</code> and <code>simple-mtpfs</code> to mount USB
+      drives and Android respectively.
+      </p>
+
+      <p>
+      Here is the function I used to mount USB devices with my own
+      <code>ut-common-shell-command</code> which is just a wrapper around Emacs
+      <code>call-process</code> command.
+      </p>
+
+      <div class="org-src-container">
+      <pre class="src src-elisp">(defun ut-common-shell-command (command &amp;rest args)
+      "Run COMMAND with ARGS.
+      Return the exit code and output in a list."
+      (with-temp-buffer
+      (list (apply 'call-process command nil (current-buffer) nil args)
+      (buffer-string))))
+
+      (defun emount-mount-usb (usb-name mount-point)
+      "Mount usb with USB-NAME at MOUNT-POINT."
+      (interactive (list (emount--select-unmounted-usb (emount--get-drive-list emount--usb-drive))
+      (emount--select-mount-point)))
+      (let* ((partition-cmd
+      (concat "lsblk -no fstype " usb-name))
+      (partition-type
+      (string-chop-newline (shell-command-to-string partition-cmd)))
+      user-group result exit-code output)
+      (if (string-equal partition-type "vfat")
+      (progn
+      (setq result (ut-common-shell-command "sudo" "mount" "-t" "vfat"
+      "-o" "rw,umask=0000" usb-name mount-point))
+      (setq exit-code (nth 0 result))
+      (setq output (nth 1 result))
+      (if (= exit-code emount--success-code)
+      (message "%s mounted successfully!" usb-name)
+      (user-error output)))
+      (setq result (ut-common-shell-command "sudo" "mount" usb-name mount-point))
+      (setq exit-code (nth 0 result))
+      (setq output (nth 1 result))
+      (if (not (eq exit-code emount--success-code))
+      (user-error output)
+      ;; TODO: test groups output
+      (setq user-group (nth 0 (split-string (shell-command-to-string "groups"))))
+      (setq result (ut-common-shell-command "sudo" "chowm" (user-login-name)
+      ":" user-group mount-point))
+      (setq exit-code (nth 0 result))
+      (setq output (nth 1 result))
+      (if (= exit-code emount--success-code)
+      (message "%s mounted successfully!" usb-name)
+      (user-error output))))))</pre>
+      </div>
+
+      <p>
+      Again you can see I am using <code>(nth 0 result)</code> to get exit code and
+      printing error using <code>(user-error output)</code> if exit code doesn't match
+      <code>emount--success-code</code>.
+      </p>
+
+      <p>
+      Corresponding shell script version (taken from <a href="https://github.com/LukeSmithxyz/voidrice">voidrice</a>):
+      </p>
+
+      <div class="org-src-container">
+      <pre class="src src-sh">mountusb() { \
+      chosen="$(echo "$usbdrives" | dmenu -i -p "Mount which drive?")" || exit 1
+      chosen="$(echo "$chosen" | awk '{print $1}')"
+      sudo -A mount "$chosen" 2>/dev/null && notify-send "USB mounting" "$chosen mounted." && exit 0
+      alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not ( -path *%s -prune ) ",$3}')
+      getmount "/mnt /media /mount /home -maxdepth 5 -type d $alreadymounted"
+      partitiontype="$(lsblk -no "fstype" "$chosen")"
+      case "$partitiontype" in
+      "vfat") sudo -A mount -t vfat "$chosen" "$mp" -o rw,umask=0000;;
+      "exfat") sudo -A mount "$chosen" "$mp" -o uid="$(id -u)",gid="$(id -g)";;
+      *) sudo -A mount "$chosen" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp";;
+      esac
+      }</pre>
+      </div>
+      </div>
+      </div>
+
+      <div id="outline-container-org1856fb6" class="outline-2">
+      <h2 id="org1856fb6">Conclusion</h2>
+      <div class="outline-text-2" id="text-org1856fb6">
+      <p>
+      In the end I will let you decide which implementation suits you better
+      but I still think <a href="https://drewdevault.com/2020/12/12/Shell-literacy.html">shell literacy</a> is important and it will help you to
+      come up with a better solution.  I would also recommend you check what
+      Master Foo wants to say about <a href="http://catb.org/~esr/writings/unix-koans/ten-thousand.html">shell scripting</a>.
+      </p>
+      </div>
+      </div>
+      </div>
+      ]]></description>
+      </item>
+
+      <item>
+      <title>Time table with Emacs</title>
+      <guid></guid>
+      <description><![CDATA[
+      <div id="content">
+      <h1 class="title">Time table with GNU Emacs</h1>
+      <div id="outline-container-org62acfdd" class="outline-2">
+      <h2 id="org62acfdd">Introduction</h2>
+      <div class="outline-text-2" id="text-1">
+      <p>
+      It's not a very well kept secret that Emacs is an extensible editor
+      and can be even extended to manage your university time table.  My
+      university originally uses Excel files to distribute time tables which
+      are pain to work with.  So I decided to use Emacs built-in table
+      editor to interact with time table with added benefit of being plain
+      text.
+      </p>
+      </div>
+      </div>
+      <div id="outline-container-orgbf44657" class="outline-2">
+      <h2 id="orgbf44657">Convert Excel file to CSV</h2>
+      <div class="outline-text-2" id="text-2">
+      <p>
+      Excel files can be easily converted to CSV file from any
+      application but I
+      use <a href="https://www.libreoffice.org/">Libreoffice</a> to
+      convert files to CSV.
+      </p>
+      <p>
+      First open the Excel file in and new Libreoffice session
+      and then by pressing <code>Ctrl-S</code> we are
+      presented with following options, choose CSV extension
+      and save the file.
+      <p>
+      <img src="csv.png" title="Libreoffice save dialog">
+      </p>
+      </div>
+      </div>
+      <div id="outline-container-org5f1e620" class="outline-2">
+      <h2 id="org5f1e620">Clean up CSV files</h2>
+      <div class="outline-text-2" id="text-3">
+      <p>
+      One of the major annoyance with previous time table was that it was
+      given to us without filtering classes from another batches which makes
+      it really long and difficult to parse.
+      </p>
+      <p>
+      So I wrote a simple Python script to parse the CSV file and filter out
+      necessary classes by taking command line arguments which you can get
+      from
+      <a href="https://github.com/utkarsh181/dotfiles/blob/master/bin/.local/bin/ttable">here</a>
+      or you can run the following commands to get it up and
+      running.
+      </p>
+      <div class="org-src-container">
+      <pre>$ curl https://raw.githubusercontent.com/utkarsh181/dotfiles/master/bin/.local/bin/ttable -o ~/.local/share/ttable
+      $ chmod +x ~/.local/share/ttable</pre>
+      </div>
+      <p>
+      The program itself is small and quite easy to understand but
+      here is the help output which briefly explain it's usage.
+      </p>
+      <div class="org-src-container">
+      <pre>$ ttable -h
+      usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
+
+      optional arguments:
+      -h, --help            show this help message and exit
+      -i INPUT, --input INPUT
+      input file
+      -o OUTPUT, --output OUTPUT
+      output file
+      -c CLASS_NAME, --class_name CLASS_NAME
+      class name</pre>
+      </div>
+      <p>
+      For example, if my current batch is <code>CS-41</code> and CSV file is
+      <code>time-table.csv</code> we can invoke the script as:
+      </p>
+      <div class="org-src-container">
+      <pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41</pre>
+      </div>
+      <p>
+      This will produce <code>output.csv</code> as a cleaned-up CSV file.
+      </p>
+      </div>
+      </div>
+      <div id="outline-container-org186d841" class="outline-2">
+      <h2 id="org186d841">CSV file to beautiful time-table</h2>
+      <div class="outline-text-2" id="text-4">
+      <p>
+      Open an empty <b>org-mode</b> file in Emacs and then invoke <code>M-x
+      org-table-import</code> and choose the output csv file.
+      </p>
+      <p>
+      Here is a sample screenshot of the resultant time-table:
+      </p>
+      <p>
+      <img src="time-table.png" title="Pretty time table">
+      </p>
+      <p>
+      Emacs now itself can be used like a small but capable table
+      editor which I will leave upto your exploration.  You can
+      read more about it from Org Mode official documentation
+      which is distributed with standard GNU Emacs package.
+      </p>
+      </div>
+      </div>
+      <div id="outline-container-orge838588" class="outline-2">
+      <h2 id="orge838588">Conclusion</h2>
+      <div class="outline-text-2" id="text-1">
+      <p>
+      This article was written to emphasize on Emacs biggest
+      feature it's <b>extensibility</b>.  Emacs elegantly extended
+      itself to present CSV files as spreadsheet-like tables.
+      </p>
+      <p>
+      You can get Elisp version of above python program 
+      <a href="https://github.com/utkarsh181/dotfiles/blob/master/emacs/.config/emacs/lisp/org-time-table.el">here</a>.
+      I preferred python version for this tutorial
+      because my understanding Elisp's table.el is still a
+      rudimentary and Emacs lacks a built-in CSV library.
+      </p>
+      </div>
+      </div>
+      </div>
+      ]]></description>
+    </item>
+  </channel>
+</rss>
+
