@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 
   <channel>
-    <title>Utkarsh Singh</title>
+    <title>Utkarsh Singh's Blog</title>
     <description>Utkarsh Singh</description>
     <language>en-us</language>
     <link>https://www.utkarshsingh.xyz/rss.html</link>
@@ -256,7 +256,7 @@
       <item>
       <title>Time table with Emacs</title>
       <guid>https://www.utkarshsingh.xyz/blog/time-table-with-emacs.html</guid>
-      <pubDate>Mon, 12 Apr 2021 11:08:44 +0530</pubDate>
+      <pubDate>Tue, 2 Mar 2021 13:45:48 +0530</pubDate>
       <description><![CDATA[
       <div id="content">
       <h1 class="title">Time table with GNU Emacs</h1>
