@@ -2,149 +2,120 @@
   <head>
     <title>Time table with GNU Emacs</title>
     <link rel='stylesheet' type='text/css' href='../style.css'>
-    </head>
-    <body>
-      <header>
-	<nav>
-	  <div class="nav-left">
-	    <ul>
-	      <li><a href="../index.html">utkarshsingh.xyz</a></li>
-	    </ul>
-	  </div>
-	  <div class="nav-right">
-	    <ul>
-	      <li><a href="../about">About</a></li>
-	      <li><a href="../contact">Contact</a></li>
-	      <li><a href="../blog">Blog</a></li>
-	    </ul>
-	  </div>
-	</nav>
-      </header>
-	<div id="content">
-	  <h1 class="title">Time table with GNU Emacs</h1>
-	  <div id="outline-container-org62acfdd" class="outline-2">
-	    <h2 id="org62acfdd">Introduction</h2>
-	    <div class="outline-text-2" id="text-1">
-	      <p>
-		It's not a very well kept secret that Emacs is an extensible editor
-		and can be even extended to manage your university time table.  My
-		university originally uses Excel files to distribute time tables which
-		are pain to work with.  So I decided to use Emacs built-in table
-		editor to interact with time table with added benefit of being plain
-		text.
-	      </p>
-	    </div>
-	  </div>
-	  <div id="outline-container-orgbf44657" class="outline-2">
-	    <h2 id="orgbf44657">Convert Excel file to CSV</h2>
-	    <div class="outline-text-2" id="text-2">
-	      <p>
-		Excel files can be easily converted to CSV file from any
-		application but I
-		use <a href="https://www.libreoffice.org/">Libreoffice</a> to
-		convert files to CSV.
-	      </p>
-	      <p>
-		First open the Excel file in and new Libreoffice session
-		and then by pressing <code>Ctrl-S</code> we are
-		presented with following options, choose CSV extension
-		and save the file.
-	      <p>
-		<img src="csv.png" title="Libreoffice save dialog">
-		</p>
-	      </div>
-	      </div>
-	      <div id="outline-container-org5f1e620" class="outline-2">
-		<h2 id="org5f1e620">Clean up CSV files</h2>
-		<div class="outline-text-2" id="text-3">
-		  <p>
-		    One of the major annoyance with previous time table was that it was
-		    given to us without filtering classes from another batches which makes
-		    it really long and difficult to parse.
-		  </p>
-		  <p>
-		    So I wrote a simple Python script to parse the CSV file and filter out
-		    necessary classes by taking command line arguments which you can get
-		    from
-		    <a href="https://github.com/utkarsh181/dotfiles/blob/master/bin/.local/bin/ttable">here</a>
-		    or you can run the following commands to get it up and
-		    running.
-		  </p>
-		  <div class="org-src-container">
-		    <pre>$ curl https://raw.githubusercontent.com/utkarsh181/dotfiles/master/bin/.local/bin/ttable -o ~/.local/share/ttable
-$ chmod +x ~/.local/share/ttable</pre>
-		  </div>
-		  <p>
-		    The program itself is small and quite easy to understand but
-		    here is the help output which briefly explain it's usage.
-		  </p>
-		  <div class="org-src-container">
-		    <pre>$ ttable -h
-usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
+  </head>
+  <body>
+    <header>
+      <nav>
+	<div class="nav-left">
+	  <ul>
+	    <li><a href="../index.html">utkarshsingh.xyz</a></li>
+	  </ul>
+	</div>
+	<div class="nav-right">
+	  <ul>
+	    <li><a href="../about">About</a></li>
+	    <li><a href="../contact">Contact</a></li>
+	    <li><a href="../blog">Blog</a></li>
+	  </ul>
+	</div>
+      </nav>
+    </header>
+    <div id="content">
+      <h1 class="title">Time table with GNU Emacs</h1>
+      <div id="outline-container-org62acfdd" class="outline-2">
+	<h2 id="org62acfdd">Introduction</h2>
+	<div class="outline-text-2" id="text-1">
+	  <p>
+	    It's not a very well kept secret that Emacs is an extensible editor
+	    and can be even extended to manage your university time table.  My
+	    university originally uses Excel files to distribute time tables which
+	    are pain to work with.  So I decided to use Emacs built-in table
+	    editor to interact with time table with added benefit of being plain
+	    text.
+	  </p>
+	</div>
+      </div>
+      <div id="outline-container-orgbf44657" class="outline-2">
+	<h2 id="orgbf44657">Convert Excel file to CSV</h2>
+	<div class="outline-text-2" id="text-2">
+	  <p>
+	    Excel files can be easily converted to CSV file from any
+	    application but I
+	    use <a href="https://www.libreoffice.org/">Libreoffice</a> to
+	    convert files to CSV.
+	  </p>
+	  <p>
+	    First open the Excel file in and new Libreoffice session
+	    and then by pressing <code>Ctrl-S</code> we are
+	    presented with following options, choose CSV extension
+	    and save the file.
+	  <p>
+	    <img src="csv.png" title="Libreoffice save dialog">
+	  </p>
+	</div>
+      </div>
+      <div id="outline-container-org5f1e620" class="outline-2">
+	<h2 id="org5f1e620">Clean up CSV files</h2>
+	<div class="outline-text-2" id="text-3">
+	  <p>
+	    So I wrote a simple Elisp function which make use of Emacs CSV
+	    library (<a href="https://github.com/mhayashi1120/Emacs-pcsv">pcsv</a>) which you can get from <a href="https://github.com/utkarsh181/dotfiles/blob/master/emacs/.config/emacs/lisp/org-ttable.el">here</a>.  To create a time table out
+	    of CSV file you will have to <code>M-x org-ttable-create-ttable</code> in which
+	    you will be prompted for CSV filename and your current batch.
+	  </p>
 
-optional arguments:
--h, --help            show this help message and exit
--i INPUT, --input INPUT
-                      input file
--o OUTPUT, --output OUTPUT
-                      output file
--c CLASS_NAME, --class_name CLASS_NAME
-			class name</pre>
-		  </div>
-		  <p>
-		    For example, if my current batch is <code>CS-41</code> and CSV file is
-		    <code>time-table.csv</code> we can invoke the script as:
-		  </p>
-		  <div class="org-src-container">
-		    <pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41</pre>
-		  </div>
-		  <p>
-		    This will produce <code>output.csv</code> as a cleaned-up CSV file.
-		  </p>
-		</div>
-	      </div>
-	      <div id="outline-container-org186d841" class="outline-2">
-		<h2 id="org186d841">CSV file to beautiful time-table</h2>
-		<div class="outline-text-2" id="text-4">
-		  <p>
-		    Open an empty <b>org-mode</b> file in Emacs and then invoke <code>M-x
-		      org-table-import</code> and choose the output csv file.
-		  </p>
-		  <p>
-		    Here is a sample screenshot of the resultant time-table:
-		  </p>
-		  <p>
-		    <img src="time-table.png" title="Pretty time table">
-		  </p>
-		  <p>
-		    Emacs now itself can be used like a small but capable table
-		    editor which I will leave upto your exploration.  You can
-		    read more about it from Org Mode official documentation
-		    which is distributed with standard GNU Emacs package.
-		  </p>
-		  </div>
-	      </div>
-	      <div id="outline-container-orge838588" class="outline-2">
-		<h2 id="orge838588">Conclusion</h2>
-		<div class="outline-text-2" id="text-1">
-		  <p>
-		    This article was written to emphasize on Emacs biggest
-		    feature it's <b>extensibility</b>.  Emacs elegantly extended
-		    itself to present CSV files as spreadsheet-like tables.
-		  </p>
-		  <p>
-		    You can get Elisp version of above python program 
-		    <a href="https://github.com/utkarsh181/dotfiles/blob/master/emacs/.config/emacs/lisp/org-time-table.el">here</a>.
-		    I preferred python version for this tutorial
-		    because my understanding Elisp's table.el is still a
-		    rudimentary and Emacs lacks a built-in CSV library.
-		  </p>
-		</div>
-	      </div>
-	      </div>
-	      <footer>
-		Copyright(c)2021 Utkarsh Singh.  All original content is
-		licensed under free/libre copyleft license(GPL or CC BY-SA).
-	      </footer>
-	    </body>
-	  </html>
+	  <p>
+	    Earlier I did a similar thing with Python's CSV library which you can
+	    also try from <a href="https://github.com/utkarsh181/dotfiles/blob/master/bin/.local/bin/ttable">here</a>.  It comes with a nice command line interface but I
+	    prefer the Elisp version because:
+	  </p>
+
+	  <dl class="org-dl">
+	    <dt>Integration</dt><dd>My Elisp function just integrates well with rest of
+	      my computing setup hence helping me to make efficient use of it.</dd>
+
+	    <dt>Extensibility</dt><dd>Due to the very nature of Elisp it's just
+	      easily extensible compared to Python.  This extensibility helped
+	      me to further define functions to clean up the table and automate
+	      the whole process with macros.</dd>
+	  </dl>
+	</div>
+      </div>
+      <div id="outline-container-org186d841" class="outline-2">
+	<h2 id="org186d841">CSV file to beautiful time-table</h2>
+	<div class="outline-text-2" id="text-4">
+	  <p>
+	    Open an empty <b>org-mode</b> file in Emacs and then invoke <code>M-x
+	      org-table-import</code> and choose the output csv file.
+	  </p>
+	  <p>
+	    Here is a sample screenshot of the resultant time-table:
+	  </p>
+	  <p>
+	    <img src="time-table.png" title="Pretty time table">
+	  </p>
+	  <p>
+	    Emacs now itself can be used like a small but capable table
+	    editor which I will leave upto your exploration.  You can
+	    read more about it from Org Mode official documentation
+	    which is distributed with standard GNU Emacs package.
+	  </p>
+	</div>
+      </div>
+      <div id="outline-container-orge838588" class="outline-2">
+	<h2 id="orge838588">Conclusion</h2>
+	<div class="outline-text-2" id="text-1">
+	  <p>
+	    This article was written to emphasize on Emacs biggest
+	    feature it's <b>extensibility</b>.  Emacs elegantly extended
+	    itself to present CSV files as spreadsheet-like tables.
+	  </p>
+	</div>
+      </div>
+    </div>
+    <footer>
+      Copyright(c)2021 Utkarsh Singh.  All original content is
+      licensed under free/libre copyleft license(GPL or CC BY-SA).
+    </footer>
+  </body>
+</html>
