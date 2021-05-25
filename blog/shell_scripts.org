@@ -1,10 +1,7 @@
 #+TITLE: Shell scripts are irreplaceable!
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil num:t
 
 * Introduction
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
 
 /One line of shell script is worth 10,000 lines of C code./
 
@@ -24,9 +21,6 @@ scripts with a 'proper' programming language.
 easier to wrap your head around.
 
 * Python
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
 
 Even though Python is easy to use, fast to get things done and have
 batteries included philosophy it still fails to be a good replacements
@@ -100,9 +94,6 @@ output back.
 #+END_SRC
 
 * Elisp (Emacs Lisp)
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
 
 At first it seems confusing to use a editor's extension language to
 program your environment but due to extensible nature of LISP it can
@@ -183,9 +174,6 @@ Corresponding shell script version (taken from [[https://github.com/LukeSmithxyz
 #+END_SRC
 
 * Conclusion
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
 
 In the end I will let you decide which implementation suits you better
 but I still think [[https://drewdevault.com/2020/12/12/Shell-literacy.html][shell literacy]] is important and it will help you to
