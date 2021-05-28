@@ -1,5 +1,4 @@
 #+TITLE: Shell scripts are irreplaceable!
-#+OPTIONS: toc:nil num:t
 
 * Introduction
 
