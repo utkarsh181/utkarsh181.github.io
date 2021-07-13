@@ -1,0 +1,37 @@
+#+title: Book review: "Programming Principles And Practice Using C++" (by Bjarne Stroustrup)
+#+author: Utkarsh Singh
+
+* Introduction
+
+Bjarne Stroustrup is well know for his work on C++ and OO programming.
+PPP (this book) works as a introductory material for learning
+practical programming skills using C++.  After learning C (first year
+programming course) and Python (second year programming course) I
+badly wanted a language which focuses on performance and utility and
+C++ surely seals the deal.
+
+* Review
+
+PPP starts with a overview of C++ which was indeed simple and concise
+but the fun part really begins with Chapter 6 "Writing A Program"
+where authors takes a programming project of implementing a
+calculator.
+
+But the author didn't stop here, he questions the quality of code and
+takes on the task to improve it.  Then author takes on the task to
+explain the concepts of OO programming following with the "display
+model" GUI library (FLTK based) by going through the example of a
+Graph application.
+
+Then the book touches on the topic of history of programming
+languages, testing and The C Programming language which helps to
+understand the incompatibility's in C/C++ programs.
+
+As summarised above the book tries to give details of all major
+programming concepts and hence leads to a very comprehensive material.
+
+* Conclusion
+
+This book is highly recommend for a beginner C++ programmer because
+unlike C, C++ is a much bigger language and it will definitely help to
+decrease the gap between beginner/expert C++ programmer.

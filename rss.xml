@@ -16,6 +16,78 @@
     <!-- LB -->
 
     <item>
+      <title>Book review: "Programming Principles And Practice Using
+      C++" (by Bjarne Stroustrup)</title>
+      <guid>https://www.utkarshsingh.xyz/blog/book-review-ppp-by-bjarne-stroustrup.html</guid>
+      <pubDate>2021-07-13 Tue 18:13</pubDate>
+      <description><![CDATA[
+      <div id="content">
+      <h1 class="title">Book review: "Programming Principles And Practice Using C++" (by Bjarne Stroustrup)</h1>
+
+      <div id="outline-container-orgbd7afc6" class="outline-2">
+      <h2 id="orgbd7afc6">Introduction</h2>
+      <div class="outline-text-2" id="text-orgbd7afc6">
+      <p>
+      Bjarne Stroustrup is well know for his work on C++ and OO programming.
+      PPP (this book) works as a introductory material for learning
+      practical programming skills using C++.  After learning C (first year
+      programming course) and Python (second year programming course) I
+      badly wanted a language which focuses on performance and utility and
+      C++ surely seals the deal.
+      </p>
+      </div>
+      </div>
+
+      <div id="outline-container-orged7f570" class="outline-2">
+      <h2 id="orged7f570">Review</h2>
+      <div class="outline-text-2" id="text-orged7f570">
+      <p>
+      PPP starts with a overview of C++ which was indeed simple and concise
+      but the fun part really begins with Chapter 6 "Writing A Program"
+      where authors takes a programming project of implementing a
+      calculator.
+      </p>
+
+      <p>
+      But the author didn't stop here, he questions the quality of code and
+      takes on the task to improve it.  Then author takes on the task to
+      explain the concepts of OO programming following with the "display
+      model" GUI library (FLTK based) by going through the example of a
+      Graph application.
+      </p>
+
+      <p>
+      Then the book touches on the topic of history of programming
+      languages, testing and The C Programming language which helps to
+      understand the incompatibility's in C/C++ programs.
+      </p>
+
+      <p>
+      As summarised above the book tries to give details of all major
+      programming concepts and hence leads to a very comprehensive material.
+      </p>
+      </div>
+      </div>
+
+      <div id="outline-container-org2d21620" class="outline-2">
+      <h2 id="org2d21620">Conclusion</h2>
+      <div class="outline-text-2" id="text-org2d21620">
+      <p>
+      This book is highly recommend for a beginner C++ programmer because
+      unlike C, C++ is a much bigger language and it will definitely help to
+      decrease the gap between beginner/expert C++ programmer.
+      </p>
+      </div>
+      </div>
+      </div>
+      <footer>
+      Copyright(c)2021 Utkarsh Singh.  All original content is
+      licensed under free/libre copyleft license(GPL or CC BY-SA).
+      </footer>
+      ]]></description>
+    </item>
+
+    <item>
       <title>Shell scripts are irreplaceable!</title>
       <guid>https://www.utkarshsingh.xyz/blog/shell_scripts.html</guid>
       <pubDate>Mon, 12 Apr 2021 11:08:44 +0530</pubDate>
@@ -251,137 +323,137 @@
       </div>
       </div>
       ]]></description>
-      </item>
+</item>
 
-      <item>
-      <title>Time table with Emacs</title>
-      <guid>https://www.utkarshsingh.xyz/blog/time-table-with-emacs.html</guid>
-      <pubDate>Tue, 2 Mar 2021 13:45:48 +0530</pubDate>
-      <description><![CDATA[
-      <div id="content">
-      <h1 class="title">Time table with GNU Emacs</h1>
-      <div id="outline-container-org62acfdd" class="outline-2">
-      <h2 id="org62acfdd">Introduction</h2>
-      <div class="outline-text-2" id="text-1">
-      <p>
-      It's not a very well kept secret that Emacs is an extensible editor
-      and can be even extended to manage your university time table.  My
-      university originally uses Excel files to distribute time tables which
-      are pain to work with.  So I decided to use Emacs built-in table
-      editor to interact with time table with added benefit of being plain
-      text.
-      </p>
-      </div>
-      </div>
-      <div id="outline-container-orgbf44657" class="outline-2">
-      <h2 id="orgbf44657">Convert Excel file to CSV</h2>
-      <div class="outline-text-2" id="text-2">
-      <p>
-      Excel files can be easily converted to CSV file from any
-      application but I
-      use <a href="https://www.libreoffice.org/">Libreoffice</a> to
-      convert files to CSV.
-      </p>
-      <p>
-      First open the Excel file in and new Libreoffice session
-      and then by pressing <code>Ctrl-S</code> we are
-      presented with following options, choose CSV extension
-      and save the file.
-      <p>
-      <img src="csv.png" title="Libreoffice save dialog">
-      </p>
-      </div>
-      </div>
-      <div id="outline-container-org5f1e620" class="outline-2">
-      <h2 id="org5f1e620">Clean up CSV files</h2>
-      <div class="outline-text-2" id="text-3">
-      <p>
-      One of the major annoyance with previous time table was that it was
-      given to us without filtering classes from another batches which makes
-      it really long and difficult to parse.
-      </p>
-      <p>
-      So I wrote a simple Python script to parse the CSV file and filter out
-      necessary classes by taking command line arguments which you can get
-      from
-      <a href="https://github.com/utkarsh181/dotfiles/blob/master/bin/.local/bin/ttable">here</a>
-      or you can run the following commands to get it up and
-      running.
-      </p>
-      <div class="org-src-container">
-      <pre>$ curl https://raw.githubusercontent.com/utkarsh181/dotfiles/master/bin/.local/bin/ttable -o ~/.local/share/ttable
-      $ chmod +x ~/.local/share/ttable</pre>
-      </div>
-      <p>
-      The program itself is small and quite easy to understand but
-      here is the help output which briefly explain it's usage.
-      </p>
-      <div class="org-src-container">
-      <pre>$ ttable -h
-      usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
+<item>
+  <title>Time table with Emacs</title>
+  <guid>https://www.utkarshsingh.xyz/blog/time-table-with-emacs.html</guid>
+  <pubDate>Tue, 2 Mar 2021 13:45:48 +0530</pubDate>
+  <description><![CDATA[
+  <div id="content">
+  <h1 class="title">Time table with GNU Emacs</h1>
+  <div id="outline-container-org62acfdd" class="outline-2">
+  <h2 id="org62acfdd">Introduction</h2>
+  <div class="outline-text-2" id="text-1">
+  <p>
+  It's not a very well kept secret that Emacs is an extensible editor
+  and can be even extended to manage your university time table.  My
+  university originally uses Excel files to distribute time tables which
+  are pain to work with.  So I decided to use Emacs built-in table
+  editor to interact with time table with added benefit of being plain
+  text.
+  </p>
+  </div>
+  </div>
+  <div id="outline-container-orgbf44657" class="outline-2">
+  <h2 id="orgbf44657">Convert Excel file to CSV</h2>
+  <div class="outline-text-2" id="text-2">
+  <p>
+  Excel files can be easily converted to CSV file from any
+  application but I
+  use <a href="https://www.libreoffice.org/">Libreoffice</a> to
+  convert files to CSV.
+  </p>
+  <p>
+  First open the Excel file in and new Libreoffice session
+  and then by pressing <code>Ctrl-S</code> we are
+  presented with following options, choose CSV extension
+  and save the file.
+  <p>
+  <img src="csv.png" title="Libreoffice save dialog">
+  </p>
+  </div>
+  </div>
+  <div id="outline-container-org5f1e620" class="outline-2">
+  <h2 id="org5f1e620">Clean up CSV files</h2>
+  <div class="outline-text-2" id="text-3">
+  <p>
+  One of the major annoyance with previous time table was that it was
+  given to us without filtering classes from another batches which makes
+  it really long and difficult to parse.
+  </p>
+  <p>
+  So I wrote a simple Python script to parse the CSV file and filter out
+  necessary classes by taking command line arguments which you can get
+  from
+  <a href="https://github.com/utkarsh181/dotfiles/blob/master/bin/.local/bin/ttable">here</a>
+  or you can run the following commands to get it up and
+  running.
+  </p>
+  <div class="org-src-container">
+  <pre>$ curl https://raw.githubusercontent.com/utkarsh181/dotfiles/master/bin/.local/bin/ttable -o ~/.local/share/ttable
+  $ chmod +x ~/.local/share/ttable</pre>
+  </div>
+  <p>
+  The program itself is small and quite easy to understand but
+  here is the help output which briefly explain it's usage.
+  </p>
+  <div class="org-src-container">
+  <pre>$ ttable -h
+  usage: ttable [-h] -i INPUT -o OUTPUT -c CLASS_NAME
 
-      optional arguments:
-      -h, --help            show this help message and exit
-      -i INPUT, --input INPUT
-      input file
-      -o OUTPUT, --output OUTPUT
-      output file
-      -c CLASS_NAME, --class_name CLASS_NAME
-      class name</pre>
-      </div>
-      <p>
-      For example, if my current batch is <code>CS-41</code> and CSV file is
-      <code>time-table.csv</code> we can invoke the script as:
-      </p>
-      <div class="org-src-container">
-      <pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41</pre>
-      </div>
-      <p>
-      This will produce <code>output.csv</code> as a cleaned-up CSV file.
-      </p>
-      </div>
-      </div>
-      <div id="outline-container-org186d841" class="outline-2">
-      <h2 id="org186d841">CSV file to beautiful time-table</h2>
-      <div class="outline-text-2" id="text-4">
-      <p>
-      Open an empty <b>org-mode</b> file in Emacs and then invoke <code>M-x
-      org-table-import</code> and choose the output csv file.
-      </p>
-      <p>
-      Here is a sample screenshot of the resultant time-table:
-      </p>
-      <p>
-      <img src="time-table.png" title="Pretty time table">
-      </p>
-      <p>
-      Emacs now itself can be used like a small but capable table
-      editor which I will leave upto your exploration.  You can
-      read more about it from Org Mode official documentation
-      which is distributed with standard GNU Emacs package.
-      </p>
-      </div>
-      </div>
-      <div id="outline-container-orge838588" class="outline-2">
-      <h2 id="orge838588">Conclusion</h2>
-      <div class="outline-text-2" id="text-1">
-      <p>
-      This article was written to emphasize on Emacs biggest
-      feature it's <b>extensibility</b>.  Emacs elegantly extended
-      itself to present CSV files as spreadsheet-like tables.
-      </p>
-      <p>
-      You can get Elisp version of above python program 
-      <a href="https://github.com/utkarsh181/dotfiles/blob/master/emacs/.config/emacs/lisp/org-time-table.el">here</a>.
-      I preferred python version for this tutorial
-      because my understanding Elisp's table.el is still a
-      rudimentary and Emacs lacks a built-in CSV library.
-      </p>
-      </div>
-      </div>
-      </div>
-      ]]></description>
-    </item>
-  </channel>
+  optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+  input file
+  -o OUTPUT, --output OUTPUT
+  output file
+  -c CLASS_NAME, --class_name CLASS_NAME
+  class name</pre>
+  </div>
+  <p>
+  For example, if my current batch is <code>CS-41</code> and CSV file is
+  <code>time-table.csv</code> we can invoke the script as:
+  </p>
+  <div class="org-src-container">
+  <pre class="src src-sh">~ $ ttable -i time-table.csv -o output.csv -c cs41</pre>
+  </div>
+  <p>
+  This will produce <code>output.csv</code> as a cleaned-up CSV file.
+  </p>
+  </div>
+  </div>
+  <div id="outline-container-org186d841" class="outline-2">
+  <h2 id="org186d841">CSV file to beautiful time-table</h2>
+  <div class="outline-text-2" id="text-4">
+  <p>
+  Open an empty <b>org-mode</b> file in Emacs and then invoke <code>M-x
+  org-table-import</code> and choose the output csv file.
+  </p>
+  <p>
+  Here is a sample screenshot of the resultant time-table:
+  </p>
+  <p>
+  <img src="time-table.png" title="Pretty time table">
+  </p>
+  <p>
+  Emacs now itself can be used like a small but capable table
+  editor which I will leave upto your exploration.  You can
+  read more about it from Org Mode official documentation
+  which is distributed with standard GNU Emacs package.
+  </p>
+  </div>
+  </div>
+  <div id="outline-container-orge838588" class="outline-2">
+  <h2 id="orge838588">Conclusion</h2>
+  <div class="outline-text-2" id="text-1">
+  <p>
+  This article was written to emphasize on Emacs biggest
+  feature it's <b>extensibility</b>.  Emacs elegantly extended
+  itself to present CSV files as spreadsheet-like tables.
+  </p>
+  <p>
+  You can get Elisp version of above python program 
+  <a href="https://github.com/utkarsh181/dotfiles/blob/master/emacs/.config/emacs/lisp/org-time-table.el">here</a>.
+  I preferred python version for this tutorial
+  because my understanding Elisp's table.el is still a
+  rudimentary and Emacs lacks a built-in CSV library.
+  </p>
+  </div>
+  </div>
+  </div>
+  ]]></description>
+</item>
+</channel>
 </rss>
 
