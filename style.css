@@ -1,4 +1,8 @@
-@charset "utf-8"; :root {
+/* CSS Theme: https://protesilaos.com/modus-themes/ */
+
+@charset "utf-8";
+
+:root {
     --col-black:        #000000;
     --col-black-alt:    #505050;
     --col-red:          #a60000;
